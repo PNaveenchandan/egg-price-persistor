@@ -1,0 +1,21 @@
+{
+  "name": "egg-price-persistor",
+  "version": "1.0.0",
+  "description": "Retrieve egg price from website and persist to PostGreSQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha 'test/**/*.js'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "rewire": "^5.0.0",
+    "cheerio": "^1.0.0-rc.10",
+    "dotenv": "^10.0.0",
+    "knex": "^0.95.15",
+    "pg": "^8.7.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  }
+}
