@@ -35,3 +35,6 @@ zip -FSrq egg-price-persistor-lambda.zip index.js db.js eggprice.js knexfile.js 
 
 # trigger for cloud watch event bridge
 30 1 * * ? *
+
+# input to trigger lambda for specific date
+{ "source": "daily.processor", "day": 24, "month": 12, "year": 2021  }
