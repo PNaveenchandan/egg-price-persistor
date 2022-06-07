@@ -30,7 +30,25 @@ const persistEggPriceOfDay = async (date, daysEggPrices) => {
   }
 };
 
-module.exports = persistEggPriceOfDay;
+const persistEggPriceOfMonth = async (date, daysEggPrices) => {
+  console.log("persisting average price of month "+date)
+  for (let daysEggPrice of daysEggPrices) {
+    const cityId = await getCityIdByName(daysEggPrice.city);
+    try {
+      await knex("egg_price_monthly")
+        .insert({ date: date, price: daysEggPrice.price, city_id: cityId })
+        .onConflict(['date','city_id'])
+        .merge();
+    } catch (err) {
+      console.error(`failed to persist egg price for the month ${toDate}`);
+      console.error(err);
+    }
+  }
+  console.log("Persistance completed!")
+  return;
+};
+
+module.exports = {persistEggPriceOfDay,persistEggPriceOfMonth};
 
 // return knex().raw(
 //     knex(tableName).insert(data).toQuery() + ' ON CONFLICT ("id") DO UPDATE SET ' +
